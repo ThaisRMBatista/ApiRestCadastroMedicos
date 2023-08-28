@@ -1,5 +1,6 @@
 package med.voll.api.controller;
 
+import jakarta.validation.Valid;
 import med.voll.api.domain.DTO.DoctorDTO;
 import med.voll.api.domain.Doctor;
 import med.voll.api.services.DoctorService;
@@ -19,7 +20,7 @@ public class DoctorController {
 
     @PostMapping
     @Transactional
-    public Doctor createDoctor(@RequestBody DoctorDTO doctorDTO) {
+    public Doctor createDoctor(@RequestBody @Valid DoctorDTO doctorDTO) {
         return service.createDoctors(doctorDTO);
     }
 }
