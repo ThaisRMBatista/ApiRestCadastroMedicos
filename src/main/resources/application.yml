@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/vollmed_api
+    username: postgres
+    password: maxpromotor
+    driver-class-name: org.postgresql.Driver
+  flyway:
+    enabled: true
+    locations: classpath:db/migrations
+    table: schema_version
+    baselineOnMigrate: true
+  jpa:
+    open-in-view: false
