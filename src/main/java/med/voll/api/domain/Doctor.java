@@ -30,7 +30,7 @@ public class Doctor {
     public Doctor(DoctorDTO doctorDTO) {
         this.name = doctorDTO.getName();
         this.email = doctorDTO.getEmail();
-        this.crm = doctorDTO.getEmail();
+        this.crm = doctorDTO.getCrm();
         this.specialty = doctorDTO.getSpecialty();
         this.address = new Address(doctorDTO.getAddressDTO());
     }
