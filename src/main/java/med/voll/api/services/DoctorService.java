@@ -2,6 +2,7 @@ package med.voll.api.services;
 
 import med.voll.api.domain.DTO.DoctorDTO;
 import med.voll.api.domain.DTO.ListDoctorDTO;
+import med.voll.api.domain.DTO.UpdateDoctorDTO;
 import med.voll.api.domain.Doctor;
 import med.voll.api.repository.DoctorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,16 @@ public class DoctorService {
     }
 
     public Page<ListDoctorDTO> getAllDoctors(Pageable pageable) {
-        return repository.findAll(pageable).map(ListDoctorDTO::new);
+        return repository.findAllByActiveTrue(pageable).map(ListDoctorDTO::new);
+    }
+
+    public void updateDoctor(UpdateDoctorDTO doctorDTO) {
+        Doctor doctor = repository.getReferenceById(doctorDTO.getId());
+        doctor.updateData(doctorDTO);
+    }
+
+    public void deleteDoctor(Long id) {
+        Doctor doctor = repository.getReferenceById(id);
+        doctor.remove();
     }
 }

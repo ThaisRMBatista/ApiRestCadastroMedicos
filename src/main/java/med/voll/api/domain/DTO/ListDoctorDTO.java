@@ -11,12 +11,13 @@ import med.voll.api.domain.enumType.Specialty;
 @ToString
 public class ListDoctorDTO {
 
+    private Long id;
     private String name;
     private String email;
     private String crm;
     private Specialty specialty;
 
     public ListDoctorDTO(Doctor doctor) {
-        this(doctor.getName(),doctor.getEmail(),doctor.getCrm(),doctor.getSpecialty());
+        this(doctor.getId(),doctor.getName(),doctor.getEmail(),doctor.getCrm(),doctor.getSpecialty());
     }
 }

@@ -3,6 +3,7 @@ package med.voll.api.controller;
 import jakarta.validation.Valid;
 import med.voll.api.domain.DTO.DoctorDTO;
 import med.voll.api.domain.DTO.ListDoctorDTO;
+import med.voll.api.domain.DTO.UpdateDoctorDTO;
 import med.voll.api.domain.Doctor;
 import med.voll.api.services.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,18 @@ public class DoctorController {
     @GetMapping
     public Page<ListDoctorDTO> listAllDoctors(@PageableDefault(size = 10, sort = {"name"}) Pageable pageable) {
         return service.getAllDoctors(pageable);
+    }
+
+    @PutMapping()
+    @Transactional
+    public void updateDoctor(@RequestBody @Valid UpdateDoctorDTO doctorDTO) {
+        service.updateDoctor(doctorDTO);
+    }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public void deleteDoctor(@PathVariable Long id) {
+        service.deleteDoctor(id);
     }
 
 }
