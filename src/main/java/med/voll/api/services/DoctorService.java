@@ -1,5 +1,6 @@
 package med.voll.api.services;
 
+import med.voll.api.domain.DTO.DetailsDoctosDTO;
 import med.voll.api.domain.DTO.DoctorDTO;
 import med.voll.api.domain.DTO.ListDoctorDTO;
 import med.voll.api.domain.DTO.UpdateDoctorDTO;
@@ -17,7 +18,8 @@ public class DoctorService {
     private DoctorRepository repository;
 
     public Doctor createDoctors(DoctorDTO doctorDTO) {
-        return repository.save(new Doctor(doctorDTO));
+        Doctor doctor = new Doctor(doctorDTO);
+        return repository.save(doctor);
 
     }
 
@@ -25,9 +27,10 @@ public class DoctorService {
         return repository.findAllByActiveTrue(pageable).map(ListDoctorDTO::new);
     }
 
-    public void updateDoctor(UpdateDoctorDTO doctorDTO) {
+    public DetailsDoctosDTO updateDoctor(UpdateDoctorDTO doctorDTO) {
         Doctor doctor = repository.getReferenceById(doctorDTO.getId());
         doctor.updateData(doctorDTO);
+        return new DetailsDoctosDTO(doctor);
     }
 
     public void deleteDoctor(Long id) {
