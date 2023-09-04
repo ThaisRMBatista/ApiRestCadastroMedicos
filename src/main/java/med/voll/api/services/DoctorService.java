@@ -37,4 +37,8 @@ public class DoctorService {
         Doctor doctor = repository.getReferenceById(id);
         doctor.remove();
     }
+
+    public Doctor detailDoctor(Long id) {
+        return repository.getReferenceById(id);
+    }
 }
