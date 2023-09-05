@@ -54,7 +54,7 @@ public class DoctorController {
         return ResponseEntity.noContent().build();
     }
 
-    @DeleteMapping("/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity detailDoctor(@PathVariable Long id) {
         Doctor doctor = service.detailDoctor(id);
         return ResponseEntity.ok(new DetailsDoctosDTO(doctor));
